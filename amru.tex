@@ -1,0 +1,910 @@
+\documentclass[12pt,report]{ucdavisthesis}
+
+\usepackage{titlesec}
+\usepackage{eufrak}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{titlesec}
+\usepackage{eufrak}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage{ragged2e}
+\usepackage[T1]{fontenc}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{blindtext}
+\usepackage{url}
+\usepackage{parskip}
+\usepackage{listings}
+\usepackage{float}
+\usepackage[utf8x]{inputenc}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage[us,nodayofweek,12hr]{datetime}
+%\usepackage{graphicx}
+%\usepackage{natbib}
+%\usepackage[square,comma,numbers,sort \&compress]{natbib}
+\usepackage{blindtext}
+\usepackage{pdflscape}
+
+
+
+
+\usepackage{geometry}
+\geometry{
+    top=1.8in,    % <-- you want to adjust this
+    inner=1.5in,
+    outer=1in,
+    bottom=2.3in,
+    headheight=3ex,       % <-- and this
+    headsep=2ex,          % <-- and this
+}
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead{}
+\renewcommand{\headrulewidth}{0.5pt}
+\fancyfoot{}
+
+\makeatletter
+\let\ps@plain\ps@fancy
+\makeatother
+\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{empty}}}
+\hyphenation{dis-ser-ta-tion blue-print man-u-script pre-par-ing} %add hyphenation rules for words TeX doesn't know
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+
+\usepackage{listings}
+
+\usepackage{caption}
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\newcommand{\rememberlines}{\xdef\rememberedlines{\number\value{AlgoLine}}}
+\newcommand{\resumenumbering}{\setcounter{AlgoLine}{\rememberedlines}}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{color}
+\begin{document}
+    \definecolor{codegreen}{rgb}{0,0.6,0}
+    \definecolor{codegray}{rgb}{0.5,0.5,0.5}
+    \definecolor{codepurple}{rgb}{0.58,0,0.82}
+    \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+   
+    \lstdefinestyle{mystyle}{
+        backgroundcolor=\color{backcolour},  
+        commentstyle=\color{codegreen},
+        keywordstyle=\color{magenta},
+        numberstyle=\tiny\color{codegray},
+        stringstyle=\color{codepurple},
+        basicstyle=\footnotesize,
+        breakatwhitespace=false,        
+        breaklines=true,                
+        captionpos=b,                   
+        keepspaces=true,                
+        numbers=left,                   
+        numbersep=5pt,                 
+        showspaces=false,               
+        showstringspaces=false,
+        showtabs=false,                 
+        tabsize=2
+    }
+    \lstset{style=mystyle}
+
+
+
+   
+    %\renewcommand{\bibfont}{\singlespacing}
+   
+    %\bibliographystyle{unsrtnat}
+   
+    \thispagestyle{empty}
+    \begin{center}
+        %\large \textbf{ A THESIS REPORT ON }\\[0.6cm]
+       
+        \Large \textbf{Traffic Condition Recognition Using The
+        	 K-Means Clustering Method}\\[0.6cm]
+        \begin{center}
+            \textbf{Project Report}
+        \end{center}
+        \begin{center}
+            \small    \textbf{Submitted by}\\[0.5cm]
+        \end{center}
+       
+        \begin{center}
+           
+           
+            \large   \textbf{Amrutha S Kumar}\\[0.5cm]
+        \end{center}
+            \begin{center}
+            \large  \textbf{Reg No: FIT16MCA-D6}\\[0.4cm]
+        \end{center}
+       
+       
+        \normalsize \textit{Submitted in partial fulfillment of the requirements for the award of the degree of}\\[0.3cm]
+   %     \newline
+        \textit{\large \bfseries{Master of Computer Applications}\\
+            \large \bfseries{of}\\
+            \large \bfseries{APJ Abdul Kalam Technological University}\\[0.1cm]
+        }
+     %  \newline
+        \includegraphics[scale=.18]{logo}\\[0.1cm]
+        \normalsize \bfseries{FEDERAL INSTITUTE OF SCIENCE AND TECHNOLOGY (FISAT)}\\
+        \small \bfseries{ANGAMALY - 683577, ERNAKULAM (DIST.)}\\
+       
+        \normalsize \bfseries{MAY 2018}\\
+    \end{center}
+    \newpage
+   
+   
+   
+    \thispagestyle{empty}
+    \textbf{\renewcommand\abstractname{DECLARATION}}
+    \begin{abstract}
+        \Large \center{ \textbf{DECLARATION}}\\[2cm]
+        \begin{flushleft}
+            \justifying
+            \hspace*{2cm}
+            I hereby declare that the report of this project work, submitted to the Department of Computer Application, Federal Institute of Science and Technology (FISAT), Angamaly in partial fulfillment of the award of the degree of Master of Computer Applications is an authentic record of my original work.\\
+            \hspace*{2cm} The report has not been submitted for the award of any degree of this university or any other university.
+        \end{flushleft}
+       
+        \begin{minipage}{\textwidth}
+            \vspace{1cm}
+            \begin{flushleft}
+                Date : \\
+                Place:\hspace*{10cm}Amrutha S Kumar
+            \end{flushleft}
+        \end{minipage}
+       
+       
+       
+    \end{abstract}
+    \clearpage
+    \normalsize{}
+   
+   
+   
+    \thispagestyle{empty}
+    \begin{center}
+        \normalsize \bfseries{FEDERAL INSTITUTE OF SCIENCE AND TECHNOLOGY (FISAT)}\\
+        \small \bfseries{ANGAMALY, ERNAKULAM-683577 }\\[0.5cm]
+        \includegraphics[scale=.18]{logo}\\[0.5 cm]
+        %  \vfill
+        \underline{\textbf{CERTIFICATE}}
+    \end{center}
+    \vspace{1 cm}
+    \textit{This is to certify that the project report titled `` \textbf{Traffic Condition Recognition Using The
+    		 K-Means Clustering Method}'' submitted by Amrutha S kumar (Reg No. FIT16MCA-D6) towards partial fulfillment of the requirements for the award of the degree of Master of Computer Application is a record of bonafide work carried out by her during the year 2018.\\[.6cm]}
+   	\begin{minipage}{\textwidth}
+   		\vspace{1cm}
+   		\begin{flushleft} 
+   			Project Guide\hspace*{7cm}Head of the Department \vspace{.5cm}
+   		\end{flushleft}
+   	%	\newline
+   		\vspace{1cm}
+   		Submitted for the viva-voce held on .......................... at .......................... 
+   		
+   	%	\newline
+   		\vspace{1cm}
+   		Examiners :
+   		
+   		
+   		
+   	\end{minipage}
+    \vfill
+    \newpage
+   
+    \clearpage
+    \normalsize{}
+   
+    \thispagestyle{empty}
+    \renewcommand\abstractname{ACKNOWLEDGEMENT}
+    \begin{abstract}
+        \Large \center{ \textbf{ACKNOWLEDGEMENT}}\\[1.5cm]
+        \flushleft
+        \justifying
+        \hspace{2.2cm}I am extremely glad to present my main project as a part of our curriculum. I take this opportunity to express my sincere thanks to those who helped me in bringing out the report of my project.
+   
+    \par\hspace{1.6cm}I am deeply grateful to \textbf{Mr. George Issac} , Principal, FISAT, Angamaly for his help and suggestions throughout the project and I express my sincere thanks to \textbf{Dr. C. Sheela} ,Vice Principal FISAT, Angamaly.
+    \par\hspace{1.6cm}My sincere thanks to \textbf{Mr. Santhosh Kottam}, HOD, Department of Computer Applications, FISAT, who had been a source of inspiration. I express heartiest thanks to  \textbf{Dr. Sreeraj M}, Project Scrum Master for his encouragement and valuable suggestion. I express my sincere gratitude to \textbf{Ms.Joice T}, my project guide for her valuable support. I express my heartiest gratitude to all the faculty members in our department for their constant encouragement and never ending support throughout the project.
+   
+   
+    \par\hspace{1.6cm}Finally I express my thanks to all my friends who gave me wealth of suggestion for successful completion of this project.
+   
+        \hspace*{11cm} Amrutha S Kumar
+       
+    \end{abstract}
+   
+   
+    \newpage
+   
+    \thispagestyle{empty}
+    \renewcommand\abstractname{ABSTRACT}
+    \begin{abstract}
+        \Large \center{ \textbf{ABSTRACT}}\\[1cm]
+        \begin{flushleft}
+            \justifying
+            \hspace{2cm}Prediction of travel time has major concern in the research domain of Intel-
+            ligent Transportation Systems (ITS). Clustering strategy can be used as a powerful
+            tool of discovering hidden knowledge that can easily be applied on historical traffic
+            data to predict accurate travel time. In our Modified K-means Clustering (MKC)
+            approach, a set of historical data is portioned into a group of meaningful sub- classes
+            (also known as clusters) based on travel time, frequency of travel time and velocity
+            for a specific road segment and time group. The information from these are processed
+            and provided back to the travellers in real time. Traffic flow modelling and driving
+            condition analysis have many applications to various areas, such as Intelligent Trans-
+            portation Systems (ITS), adaptive cruise control, pollutant emissions dispersion and
+            safety.
+            \par\hspace{1.2cm}K-means clustering is a type of unsupervised learning, which is used when you have
+            unlabelled data (i.e., data without defined categories or groups). The goal of this
+            algorithm is to find groups in the data, with the number of groups represented by the
+            variable K. The algorithm works iteratively to assign each data point to one of K
+            groups based on the features that are provided. \par\hspace{1.2cm} The project entitled "Traffic Condition Recognition Using The K-Means Clustering Method" The use of a machine learning technique,
+            namely K-means, for the Traffic analysis. In this project we used the K-means al-
+            gorithm for clustering the dataset. In this project impart some libraries K-means,
+            folium, and Xgboost .
+        \end{flushleft}
+    \end{abstract}
+    \clearpage
+    \normalsize{}
+   
+    \newpage
+   
+    \tableofcontents
+    \thispagestyle{empty}
+   
+    \newpage
+    \pagenumbering{arabic}
+   
+    \setcounter{page}{1}
+   
+    \lhead[5pt]{\footnotesize{\textbf{Traffic Condition Recognition Using The K-Means Clustering Method}}}
+    \rhead{}
+    \lfoot[10pt]{Federal Institute of Science And Technology}
+    \cfoot{}
+    \rfoot[10pt]{\thepage}
+   
+    \chapter{Introduction}\label{chp:chapter}
+    %\thispagestyle{fancy}
+    \section{Introduction}
+     \hspace{2cm}Recently, accurate estimation of travel times has been central for traffic data analysis
+     to various Advanced Travelers Information System (ATIS) and ITS applications
+     such as trip planning, vehicular navigation systems and dynamic route guidance
+     systems. Moreover, Travel time prediction is also becoming increasingly important
+     with the development of ATIS. In addition, Travel time forecasting provides
+     information that helps travellers to decide whether they should change their routes,
+     travel mode, starting time or even cancel their trip. So, the reliable and accurate
+     travel time prediction on road network plays an important role in any kind of
+     dynamic route guidance systems to fulfil the users’ desires. On top of that, the
+     importance of travel time information is also indispensable to find the fastest path
+     (i.e. shortest path according to travel time) that connects the origin and destination.
+     Besides, accurate travel time information is delivered to industries in progress their
+     service quality by delivery on time. Travel time prediction is based on vehicle speed,
+     traffic flow and occupancy which are extremely sensitive to external event like
+     weather condition and traffic incident. The traffic flow of a specific road network
+     fluctuates based on daily, weekly and occasional events. For example, the traffic
+     condition of weekend may differ from that of weekday. So, time varying feature of
+     traffic flow is one of the major issues to estimate accurate travel time . In this study,
+     we focus a new method that is able to predict travel time reliably and accurately .
+    \par\hspace{2cm}Accurate estimation of travel times is the key factor in traffic data analysis. The
+    traffic conditions may change every time according to different factors like office
+    time, weekends, weather, accidents etc. It is important to know how much travel
+    time it would take to reach the destination and what is the shortest way to reach
+    there. This will help the traveler to check and determine the shortest time path while
+    they are booking the online taxi for the trip. Without data analysis and live update
+    the estimation and identification of shortest travel time at a time is very difficult.
+    Hence in such situations the challenge is to analyze the historic data and other traffic
+    conditions and provide the live update to traveler and driver to determine the shortest
+    time. This information will help travelers to decide whether they should change
+    their routes, travel mode, starting time or even cancel their trip.%\par\hspace{2cm}\par\hspace{2cm}
+    \chapter{Proof of Concept}\label{chp:chapter}
+    %\thispagestyle{fancy}
+    \section{Proof of Concept}
+    \hspace{2cm}The project called “Traffic Condition Recognition Using The K-Means
+    Clustering Method” is based on [1]. This  paper has used different technologies for implementing this. This paper presents a methodological approach to traffic condition recognition, based on
+    driving segment clustering. This study focuses on the application of driving condition recognition. For this purpose, driving features
+    are identified and used for driving segment clustering, using the k-means clustering algorithm. \par\hspace{2cm}Travel time prediction is based on vehicle speed, traffic flow and occupancy which 
+    are extremely sensitive to external event like weather condition and traffic incident.\newline Proposed MKC method is able to address the arbitrary route on road networks that is given by user. 
+   
+    \section{Objectives}
+    \hspace{2cm}The main objective of this project is to find the shortest travel time by analyzing
+    the various historic data and provide the real time update back to the user while
+    they are booking an online taxi for the trip. Travel time forecasting provides
+    information that helps travelers to decide whether they should change their routes,
+    travel mode, starting time or even cancel their trip. This project aims to use the
+    historic data such as frequency of travel time and velocity for a specific road
+    segment, traffic details during different days etc. With the use of an
+    unsupervised machine learning technique, namely K-means Clustering the
+    historic data will be analyzed and grouped in to various groups according to
+    the feature similarity. This groups will be used for grouping the new data and
+    also for predicting the shortest travel time. By using this technique the
+    algorithm becomes strong and able to provide the accurate travel time for a trip
+    at real time to traveler.
+
+        \chapter{Implementation}\label{chp:chapter}
+    %\thispagestyle{fancy}
+             \section{Implementation}
+        \hspace{2cm}All operations are performed in Python and libraries used are numpy, for
+        mathematical operations, pandas for handling data, scipy for scientific computing
+        and technical computing, folium for manipulate data in python and
+        visualize it in on a leaflet map via folium, Xgboost is an implementation of
+        gradient boosted decision trees designed for speed and performance that is
+        dominative competitive machine learning and seaborn for statistical data
+        visualization.\par\hspace{2cm} The competition dataset is based on the 2016 NYC Yellow Cab trip record
+        data made available in Big Query on Google Cloud Platform. The data was
+        originally published by the NYC Taxi and Limousine Commission (TLC). The
+        data was sampled and cleaned for the purposes of this playground competition.
+        Based on individual trip attributes, participants should predict the duration of
+        each trip in the test set.
+        \par\hspace{2cm}Folium makes it easy to visualize data that’s been manipulated in Python on an
+        interactive Leaflet map. It enables both the binding of data to a map for
+        choropleth visualizations as well as passing Vincent/Vega visualizations as
+        markers on the map. The library has a number of built-in tilesets from Open Street
+        Map, Mapbox, and Stamen, and supports custom tile sets with Mapbox or Cloud
+        made API keys. Folium supports both GeoJSON and TopoJSON over lays, as
+        well as the binding of data to those overlays to create choropleth maps with color
+        –brewer color schemes.
+        \par\hspace{2cm} Define the Feature Eng in train then create new features for the date or time. Then
+        calculate Distance and map in the program distance finding we use haversine
+        function and manhattan function. Using K-means algorithm clustering the
+        location and Feature engineering. Both train and test the dataset. Visualization
+        contains histogram, count plot etc. Calculate the distance and speed in hour and
+        minute Map the location of all pickups using Folium. Create a simple leasllt map.
+        Exclude feature not for model development. Start training the XGB - eXtreme
+        Gradient Boosting Note, the parameters should be further tuned. Examine
+        features Use Cv to determined number of rounds.
+        \par\hspace{2cm}
+        \newpage Numerous researchers have paid their attention on the accurate travel time
+        prediction as it is one of the major issues for effective dynamic route guidance
+        systems. Various methodologies have been investigated till date for computation
+        and prediction of travel times with varying degree of successes. In this section, a
+        historical background on the topic of travel time prediction is discussed briefly.
+        We propose MKC method. In this study, we try to eliminate the shortcomings of
+        traditional K-means Clustering approach. he key challenges of this research are
+        to reduce prediction error as well as to predict the uncertain situation. At the same
+        time, proposed method can also be scalable to large network with arbitrary travel
+        routes.
+        \par\hspace{2cm} In this section, a new method for foretelling travel time from historical traffic
+        data using MKC method is depicted. Cluster analysis or clustering is an
+        assignment of separating the set of observations into subset. A cluster is therefore
+        a collection of objects which are similar between themselves and are dissimilar
+        to the objects belonging to other clusters. K-means is one of the simplest
+        unsupervised learning algorithms that solve the well-known clustering problems.
+        The main advantages of K-means algorithm are its simplicity and speed which
+        allows it to run on large datasets. The procedure follows a simple and easy way
+        to classify a given data set through a certain number of clusters (assume K
+        clusters) fixed a priori. The main concept is to define K centroids, one for each
+        cluster. These centroids should be positioned in a cunning way because location
+        verification causes result verification. So, the better choice is to place them as
+        much as possible far away from each other. In our MKC method, we incorporate
+        a technique so that centroids of different clusters maintain a sufficient difference.
+        The main disadvantage of K-means clustering is that it doesn’t yield the same
+        result with each run, since the resulting clusters depend on the initial random
+        assignments. We have formulated MKC method in a cunning way such that we
+        can eliminate this kind of shortcoming of well-defined K-mean initially, an origin
+        with start time and destination is initialized by user. A route may consist of several
+        road segments from origin to destination. First of all, we apply our MKC method
+        on the data set of the first road segment to calculate the end time of first road
+        segment which in turn becomes the start time of the next road segment. Finally,
+        applying successive repetition approximate travel time from origin to destination
+        can measured.
+        \newpage \section{DataSet Used}
+    %   \newline 
+       $\bullet$ New York City Taxi Trip Duration
+       Share code and data to improve ride time predictions
+        \newline $\bullet$ Source:\href {url} {https://www.kaggle.com/c/nyc-taxi-trip-duration  }
+       \newline $\bullet$ Size: The dataset contains in total 3 files.
+	       
+	       \subitem $\bullet$
+	       train.csv - the training set (contains 1458644 trip records)
+	       \subitem $\bullet$
+	       test.csv - the testing set (contains 625134 trip records)
+	       \subitem $\bullet$
+	       sample-submission.csv - a sample submission file in the correct format
+	       
+     
+        \newpage \section{System Architecture}
+        \subsection{Block Diagram}
+      \includegraphics[width=12cm,height=12cm]{system}
+       \newline \hspace{2cm} The block diagram that describes the operation of the  system .The input to the system is a dataset, and the outputs are load images . In the data analysis step  in the dataset is  used K-Means algorithm.
+         \subsection{Algorithm}
+         \begin{algorithm}
+         	\caption{Traffic Condition Recognition Using The K-Means Clustering Method
+         		\newline\textbf{Input}  : Load the csv file as dataset
+         		\newline\textbf{Output} : Load Images and Map }
+         	\begin{algorithmic}
+         		\STATE Step1 : Start
+         		\STATE Step2 : Read the dataset.
+         		\STATE Step3 : Clustering the dataset using K-Means algorithm.
+         		\STATE Step4 : XGBoost framework using boosting the dataset.
+         		\STATE Step5 : Map polted using folium Interactive maps .
+         		\STATE Step6 : Load the output images on a folder.
+         		\STATE Step7 : Stop .
+         		
+         	\end{algorithmic}
+         \end{algorithm}
+         \newpage
+         \section{Algorithms Used}
+         \subsection{ K-Means}
+       % \newline
+         \hspace{2cm}Clustering is a type of unsupervised learning. This is very often used when you
+        don’t have labeled data. K-Means Clustering is one of the popular clustering
+        algorithm. The goal of this algorithm is to find groups (clusters) in the given data.
+        In this post we will implement K-Means algorithm using Python from scratch.
+        \hspace{2cm}K-Means is a very simple algorithm which clusters the data into K number of
+        clusters. The following image from pypr is an example of K-Means Clustering.
+        \par\hspace{2cm}K-means is one of the simplest unsupervised learning algorithms that solve the well known clustering problem. The procedure follows a simple and easy way to classify a given data set through a certain number of clusters (assume k clusters) fixed apriori. The main idea is to define k centroids, one for each cluster. These centroids shoud be placed in a cunning way because of different location causes different result. So, the better choice is to place them as much as possible far away from each other. The next step is to take each point belonging to a given data set and associate it to the nearest centroid. When no point is pending, the first step is completed and an early groupage is done. At this point we need to re-calculate k new centroids as barycenters of the clusters resulting from the previous step. After we have these k new centroids, a new binding has to be done between the same data set points and the nearest new centroid. A loop has been generated. As a result of this loop we may notice that the k centroids change their location step by step until no more changes are done. In other words centroids do not move any more.
+        Finally, this algorithm aims at minimizing an objective function, in this case a squared error function. 
+        
+       
+        
+        \newpage
+         \subsection{ XGBoost}
+         \hspace{2cm}XGBoost is an open-source software library which provides the gradient boosting framework for C++, Java, Python, R, and Julia. It works on Linux, Windows, and macOS. From the project description, it aims to provide a "Scalable, Portable and Distributed Gradient Boosting (GBM, GBRT, GBDT) Library". Other than running on a single machine, it also supports the distributed processing frameworks Apache Hadoop, Apache Spark, and Apache Flink. It has gained much popularity and attention recently as it was the algorithm of choice for many winning teams of a number of machine learning competitions.
+         
+        \par\hspace{2cm}
+        XGBoost is used for supervised learning problems, where we use the training data (with multiple features) xi to predict a target variable yi. Before we dive into trees, let us start by reviewing the basic elements in supervised learning.As mentioned you can play with the different parameters of the XGBoost algorithm to tweak the model's outcome. So below is a short, but very nice, way of itterating through model parameters to tweak the model. So it's implementation is simple: just uncomment the code and run the kernel.
+        
+      
+        Basic exploratory data analysis 
+         \newline $\bullet$Feature engineering 
+         \newline $\bullet$Build XGB model and generate predictions 
+         \newline $\bullet$Explore the possibility of network analysis 
+         \newline $\bullet$Further tune the XGB model parameters
+          
+      %  \newpage\section{Modules}
+     %    \subsection{Preprocessing}
+      %   \hspace{2cm}
+        % \bigskip
+        % \bigskip
+      %   \subsubsection{Block Diagram}
+        %          \bigskip
+    %     \includegraphics[width=7cm,height=8cm]{preprocessing.png}
+     
+        % \newpage\subsubsection{Algorithm}
+        % \begin{algorithm}
+        %     \caption{Offline Signature Verification- Preprocessing
+           %   \newline\textbf{Input}  : Load the signature image
+             % \newline\textbf{Output} :  preprocessed image}
+               %  \begin{algorithmic}
+               %  \STATE Step1 : Start
+               %  \STATE Step2 : Read the image.
+               %  \STATE Step3 : Noises in the image is removed using fastNlMeansDenoising.
+               %  \STATE Step4 : Convert the image as a flatten array.
+                % \STATE Step5 : Resize and then crop the image.
+               %  \STATE Step6 : Stop.
+                
+          %   \end{algorithmic}
+        % \end{algorithm}
+        % \newpage
+         % \subsection{Signature Verification}
+       %  \hspace{2cm}
+       %  \bigskip
+       %  \bigskip
+       %  \subsubsection{Algorithm}
+       %  \begin{algorithm}
+           %  \caption{Signature Verification
+          %  \newline\textbf{Input}  : A folder containing a set of forged and genuine signatures.
+          %   \newline\textbf{Output} : Number of forged signatures out of total images}
+             %                 \begin{algorithmic}
+            % \STATE Step1 : Start
+            % \STATE Step2 : Load the folder
+            % \STATE Step3 : Preprocess the images.
+           %  \STATE Step4 : Extract the features and store.
+           %  \STATE Step5 : Signature verification process is done using backpropogation and neural network.
+           %  \STATE Step6 : Number of forged images from a set of forged and genuine is displayed.
+           %  \STATE Step7 : stop
+                
+                
+            % \end{algorithmic}
+       %  \end{algorithm}
+  
+   \newpage \section{Issues Faced and Remedies Taken}
+ \begin{itemize}
+    \item \textbf{Issue 1 :} Finding out the dataset was a problem.
+    \item \textbf{Remedy :} Finally got the  dataset from New York City Taxi Trip Duration
+    Share code and data to improve ride time predictions.
+    \item \textbf{Issue 2 :} There was as an issue while running the code , showing a ValueError.
+    \item \textbf{Remedy :} Installed python and XGBoost
+   % \item \textbf{Issue 3:} It was difficult to find out the exact no: of forged images in some sets.
+    %\item \textbf{Remedy :} Find out that the reson is due to poor image quality of some images and high similarity between 2 signatures.
+\end{itemize}
+
+     \chapter{Result Analysis}\label{chp:chapter}
+ %\thispagestyle{fancy}
+     \section{Result Analysis}
+\hspace{2cm}Statistical analysis is the science of collecting data uncovering patterns and trends. its really just another way of saying "statistics". After collecting data you can analyze it to:
+ \newline $\bullet$Summarize the data.
+ \newline $\bullet$Create new features for date/time   weekday.
+ \newline $\bullet$Calculate measures of speed; this tell you if your data is highly clustered or more spread out. The standard deviation is one of the more commonly used measures of spread; it tells you how spread out your data is about mean.
+ \newline $\bullet$Map Locations of all pickups
+ \newpage $\bullet$All outputs saved on a floder, That floder contains Distribution of log(Trip Duration, Heatmap of trip distribution,K-Means clusters of pick-up/drop-off locations,Relationship between time and distance, Feature importance from XGB.
+ \subsection{Result}
+  \hspace{2cm}Traffic Condition Recognition and Analysis using  the K-Means Clustering XGBoost algorithms which is based on data analysis. Both systems used a three step process; in the first step, Location clustering the dataset using K-Means algorithm, Create new features for date/time weekday. Statstics function are located in the sub pachage 'scipy.stats'. Second step, Find the distance, speed, travel time using xgboost (provides the gradient boosting)In third step, Calculate distance and map, Apply XGBoost model on test dataset, Map the pickup points using folium (Interactive maps). All outputs saved on a floder, That floder contains Distribution of log(Trip Dura-
+tion),Heatmap of trip distribution,K-Means clusters of pick-up/drop-off locations,Relationship
+between time and distance, Feature importance from XGB.
+
+    \chapter{Conclusion and Future Scope}\label{chp:chapter}
+    %\thispagestyle{fancy}    
+         \section{Conclusion}
+    \hspace{2cm}In conclusion, we can infer from this project that by using the machine learning
+    technique K-means Clustering it is able to identify the shortest travel time for a trip
+    by analyzing the historic data such as speed in the road and other traffic conditions.
+    The algorithm getting stronger and provide accurate results time by time by
+    analyzing more data. In can be concluded that the accurate travel time estimation at
+    real time during the taxi booking will help the traveler to plan the trip accordingly.
+    Also with a more detailed and complete dataset, we can perform better and more
+    accurate predictions. These are some prospects of this project that can be explored
+    in this future in order to improve traffic time estimation and make this available to
+    the traveler and also for the driver to make the dynamic route calculations during a
+    trip according to current traffic situations.
+    \section{Future Scope}
+    \hspace{2cm} For future work we can collect live traffic conditions based on dataset also using GPS for live updates. I think that intelligent travel systemstThe increasing number of mega cities and the population growth in developed and developing countries has increased the importance of deploying an intelligent transport system (ITS). ITS system constitutes both, road transport and an efficient metro/underground rail system. ITS involves the revamp of overall technological aspects such as GPS, Carrier Access for Land Mobiles (CALM), Dedicated Short Range Communication (DSRC) etc. Globally, the concerned government departments understand the importance of implementing an efficient ITS system, which is an important driving factor for the market growth. Therefore, these departments are formulating specific programs and taking initiatives to implement the system. For example, the U.S. Department of Transport (DOT) is focusing on intelligent infrastructure, intelligent vehicles and integration of these two factors.
+   
+    \chapter{Appendix}\label{chp:chapter}
+        %\thispagestyle{fancy}    
+    
+  \section{Screenshot}
+    
+    \begin{figure}
+    	\centering
+    	\includegraphics[scale=0.5]{1.png}
+    	\caption{K-means clusters of pick-up/drop-off location}
+    	\label{fig:gull}
+    \end{figure}
+    
+  
+   \begin{figure}
+   	\centering
+   	\includegraphics[scale=0.6]{2.png}
+   	\caption{Relation between time and distance(Days)}
+   	\label{fig:gull}
+   \end{figure}
+     
+    
+     \begin{figure}
+     	\centering
+     	\includegraphics[scale=0.6]{3.png}
+     	\caption{Relation between time and distance(Weekday)}
+     	\label{fig:gull}
+     \end{figure}
+     
+   \begin{figure}
+   	\centering
+   	\includegraphics[scale=0.5]{5.png}
+   	\caption{Plot latitude and longitude}
+   	\label{fig:gull}
+   \end{figure}
+     
+    \begin{figure}
+    	\centering
+    	\includegraphics[scale=0.6]{6.png}
+    	\caption{Time distance plot}
+    	\label{fig:gull}
+    \end{figure}
+     
+     \begin{figure}
+     	\centering
+     	\includegraphics[scale=0.7]{7.png}
+     	\caption{Two histogram plot}
+     	\label{fig:gull}
+     \end{figure}
+    
+   \begin{figure}
+   	\centering
+   	\includegraphics[scale=0.5]{9.png}
+   	\caption{Distribution of trip }
+   	\label{fig:gull}
+   \end{figure}
+   
+    \begin{figure}
+    	\centering
+    	\includegraphics[scale=0.7]{10.png}
+    	\caption{Heatmap of trip duration}
+    	\label{fig:gull}
+    \end{figure}
+   
+     \begin{figure}
+     	\centering
+     	\includegraphics[scale=0.7]{8.png}
+     	\caption{Count day of week}
+     	\label{fig:gull}
+     \end{figure}
+    
+    \begin{figure}
+    	\centering
+    	\includegraphics[scale=0.8]{4.png}
+    	\caption{Features importance from XGB}
+    	\label{fig:gull}
+    \end{figure}
+    
+     \begin{figure}
+     	\centering
+     	\includegraphics[scale=0.2]{map.png}
+     	\caption{Map plat pick up points}
+     	\label{fig:gull}
+     \end{figure}
+     \newpage
+     \newpage
+     \section{Source Code}
+     \subsection{Main.py}
+     \begin{lstlisting}[language=Python, caption=code1]
+    # Import libraries
+    from modules.plots import *
+    from modules.map import *
+    import pandas as pd
+    import numpy as np
+    from scipy import stats  #statstics fn are located in the sub pachage scipy.stats
+    from sklearn.cluster import KMeans
+    import folium #Interactive maps 
+    import xgboost as xgb #provides the gradient boosting 
+    
+    def FeatureEng(train):
+    #Create new features for date/time & fig4  weekday
+    train['pickup_datetime'] = pd.to_datetime(train.pickup_datetime)
+    train['pickup_weekday_name'] = train['pickup_datetime'].dt.weekday_name
+    train['pickup_weekday'] = train['pickup_datetime'].dt.weekday
+    train['pickup_hour_weekofyear'] = train['pickup_datetime'].dt.weekofyear
+    train['pickup_hour'] = train['pickup_datetime'].dt.hour
+    
+    #Calculate distance & map
+    train['distance_haversine'] = haversine_array(train['pickup_latitude'].values, 
+    train['pickup_longitude'].values, 
+    train['dropoff_latitude'].values, 
+    train['dropoff_longitude'].values)
+    
+    train['distance_manhattan'] = manhattan_distance(train['pickup_latitude'].values, 
+    train['pickup_longitude'].values, 
+    train['dropoff_latitude'].values, 
+    train['dropoff_longitude'].values)
+    #Location clustering
+    coords = np.vstack((train[['pickup_latitude', 'pickup_longitude']].values,
+    train[['dropoff_latitude', 'dropoff_longitude']].values))
+    sample_ind = np.random.permutation(len(coords))[:5000]
+    kmeans = KMeans(n_clusters=100).fit(coords[sample_ind])
+    
+    train['pickup_cluster'] = kmeans.predict(train[['pickup_latitude', 'pickup_longitude']])
+    train['dropoff_cluster'] = kmeans.predict(train[['dropoff_latitude', 'dropoff_longitude']])
+    
+    # Return dataframe
+    return(train)
+    
+    # Read train set
+    train = pd.read_csv('train.csv')
+    test = pd.read_csv('test.csv')
+    
+    # Feature Engineering
+    train['log_trip_duration'] = np.log(train['trip_duration'].values + 1)    
+    city_long_border = (-74.03, -73.75)
+    city_lat_border = (40.63, 40.85)
+    train = train[(train.pickup_latitude > city_lat_border[0]) & (train.pickup_latitude < city_lat_border[1])]
+    train = train[(train.dropoff_latitude > city_lat_border[0]) & (train.dropoff_latitude < city_lat_border[1])]
+    train = train[(train.pickup_longitude > city_long_border[0]) & (train.pickup_longitude < city_long_border[1])]
+    train = train[(train.dropoff_longitude > city_long_border[0]) & (train.dropoff_longitude < city_long_border[1])]
+    
+    # For both train and test
+    train = FeatureEng(train)
+    test = FeatureEng(test)
+    
+    # Visualization           
+    LonLatPlot(train)                                                            #6  Lat_Lon_Plot          
+    ViolinPlot(train, 'log_trip_duration','passenger_count', 'vendor_id')
+    Hist(train['log_trip_duration'], 'Log (Duration)', 'Log Trip Duration His')  #1   Log Trip Duration His
+    CountPlot(train, 'pickup_weekday_name','Day of Week', 4, 2)                  #2  Day of Week_Count_Plot
+    PivotPlot(train, 'log_trip_duration', 'pickup_hour', 'pickup_weekday')       #7  pickup_hour_and_pickup_weekday_Pivot
+    Time_Distance_Plot(train)                                                    #8  Time_distance_pivot
+    
+    # Calculate distance and speed
+    train['avg_speed_h'] = train['distance_haversine'] / train['trip_duration'] * 3600# in the unit of km/hr
+    train['avg_speed_m'] = train['distance_manhattan'] / train['trip_duration'] * 3600# in the unit of km/hr
+    SpeedPlot(train,'pickup_weekday','avg_speed_h','Weekday')
+    SpeedPlot(train,'pickup_hour','avg_speed_h','Hour of Day')
+    
+    # Map Locations of all pickups
+    MapPlot(train)
+    MapPlot(train[:10000], 'pickup_cluster', legend_plot = False)
+    
+    # Create a simple leafllet map
+    locations = train[['pickup_latitude', 'pickup_longitude']]
+    locationlist = locations.values.tolist()[:300]
+    map_object = folium.Map(location=[40.767937,-73.982155], tiles='CartoDB dark_matter', zoom_start=12)
+    #marker_cluster = folium.MarkerCluster().add_to(map_object)
+    for point in range(0, len(locationlist)):
+    folium.Marker(locationlist[point]).add_to(map_object)
+    folium.Map.save(map_object, "Leaflet_Map.html")
+    
+    # Exclude feature not for model development
+    feature_names = list(train.columns)
+    do_not_use_for_training = ['id', 'log_trip_duration', 'pickup_datetime', 'dropoff_datetime', 'trip_duration', 
+    'pickup_weekday_name','pickup_date', 'avg_speed_h', 'avg_speed_m','store_and_fwd_flag']
+    feature_names = [f for f in train.columns if f not in do_not_use_for_training]
+    
+    # Examine features
+    feature_stats = pd.DataFrame({'feature': feature_names})
+    feature_stats['train_mean'] = np.nanmean(train[feature_names].values, axis=0)
+    feature_stats['train_std'] = np.nanstd(train[feature_names].values, axis=0)
+    feature_stats['train_nan'] = np.mean(np.isnan(train[feature_names].values), axis=0)
+    
+    ## Start training the XGB - eXtreme Gradient Boosting
+    # Note, the parameters should be further tuned
+    xgb_pars = {'eta': 0.3, 'colsample_bytree': 0.3, 'max_depth': 10,
+    'subsample': 0.5, 'lambda': 1, 'booster' : 'gbtree', 'silent':0,
+    'eval_metric': 'rmse', 'objective': 'reg:linear'}
+    Xtr = train[feature_names]
+    Ytr = train['log_trip_duration']
+    dtrain = xgb.DMatrix(Xtr, label=Ytr) #xgboost dataset
+    
+    # Use CV to determind number of rounds
+    max_num_round = 100
+    xgb_cv = xgb.cv(xgb_pars, dtrain, max_num_round, nfold=5,
+    callbacks=[xgb.callback.print_evaluation(show_stdv=True)])
+    
+    #Use the best number of rounds from CV to train the model again
+    selected_num_round = 92
+    xgb_model = xgb.train(xgb_pars, dtrain, selected_num_round)
+    
+    # Examine feature importance & fig 2
+    feature_importance_dict = xgb_model.get_fscore()
+    feature_importance_table = pd.DataFrame({'feature_name': list(feature_importance_dict.keys()), 
+    'importance': list(feature_importance_dict.values())})
+    feature_importance_table.sort_values(by ='importance', ascending=False, inplace= True)
+    PlotFeatureImp(feature_importance_table)
+    
+    # Apply model on test dataset
+    Xte = test[feature_names]
+    dtest = xgb.DMatrix(Xte) #xgboost dataset
+    Yte = xgb_model.predict(dtest)
+    test['log_trip_duration'] = Yte
+    test['trip_duration'] = np.exp(Yte) - 1
+    test[['id', 'trip_duration']].to_csv('sample_submission.csv', index=False)
+    Two_Hist_Plot(train, test)
+    
+    
+ \end{lstlisting}
+ \newpage
+ \subsection{map.py}
+ \begin{lstlisting}[language=Python, caption=code2]
+  # -*- coding: utf-8 -*-
+  import numpy as np
+  
+  def haversine_array(lat1, lng1, lat2, lng2):
+  lat1, lng1, lat2, lng2 = map(np.radians, (lat1, lng1, lat2, lng2))
+  AVG_EARTH_RADIUS = 6371  # in km
+  lat = lat2 - lat1
+  lng = lng2 - lng1
+  d = np.sin(lat * 0.5) ** 2 + np.cos(lat1) * np.cos(lat2) * np.sin(lng * 0.5) ** 2
+  h = 2 * AVG_EARTH_RADIUS * np.arcsin(np.sqrt(d))
+  return h # in the unit of km
+  
+  def manhattan_distance(lat1, lng1, lat2, lng2):
+  a = haversine_array(lat1, lng1, lat1, lng2)
+  b = haversine_array(lat1, lng1, lat2, lng1)
+  return a + b
+ \end{lstlisting}
+ \newpage
+ \subsection{plot.py}
+ \begin{lstlisting}[language=Python, caption=code3]  
+import seaborn as sns
+
+import pandas as pd
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+def Hist(dataset, xlabel, filename):  #Log Trip Duration His
+sns.set_style("darkgrid")
+sns.distplot(dataset, kde=True, rug=False)
+plt.legend()
+plt.xlabel(xlabel)
+plt.ylabel('Frequency')
+plt.tight_layout()
+plt.savefig('./fig/'+filename+'.png',dpi=100)  
+
+def CountPlot(dataset, column, label, s, a):   #Day of Week_Count_Plot
+sns.set_style("darkgrid")
+sns_plot = sns.factorplot(x=column,data=dataset,kind='count', palette="muted",size = s, aspect = a)
+plt.xlabel(label)
+plt.ylabel('Frequency')
+plt.tight_layout()
+sns_plot.savefig('./fig/'+label + '_Count_Plot.png',dpi=100)
+
+def MapPlot(dataset, color = None, legend_plot = True):
+sns.set_style("darkgrid")
+city_long_border = (-74.03, -73.75)
+city_lat_border = (40.63, 40.85)
+if color is None:
+sns_plot = sns.lmplot('pickup_longitude', 'pickup_latitude', data=dataset,fit_reg=False, scatter_kws={"s": 2.5}, legend =legend_plot)
+else:
+sns_plot = sns.lmplot('pickup_longitude', 'pickup_latitude', data=dataset,hue = color, fit_reg=False, scatter_kws={"s": 2.5}, legend =legend_plot)
+#sns.plt.xlim(city_long_border)
+#sns.plt.ylim(city_lat_border)
+plt.xlabel('Longitude')
+plt.ylabel('Latitude')
+sns_plot.savefig('./fig/3_Map_Plot_PickUp.png',dpi=100)
+
+def SpeedPlot(dataset,column,speed,label):
+sns.set_style("darkgrid")
+sns.pointplot(x=column, y=speed, data=dataset)
+plt.xlabel(label)
+plt.ylabel('Speed (km/hr)')
+plt.savefig('./fig/4_Speed_By_'+label+'.png',dpi=100)
+
+def PlotFeatureImp(feature_importance_table):
+sns.set_style("darkgrid")
+sns.factorplot(x="importance", y="feature_name",data=feature_importance_table, kind="bar")
+plt.savefig('./fig/5_Feature_Imp_XGB.png',dpi=100)
+
+
+def LonLatPlot(train):
+sns.set(style="darkgrid", palette="muted")
+f, axes = plt.subplots(2,2,figsize=(12, 12), sharex = False, sharey = False)#
+sns.despine(left=True) # if true, remove the ax
+sns.distplot(train['pickup_latitude'].values, color="m",bins = 100, ax=axes[0,0])
+sns.distplot(train['pickup_longitude'].values, color="g",bins =100, ax=axes[0,1])
+sns.distplot(train['dropoff_latitude'].values, color="m",bins =100, ax=axes[1,0])
+sns.distplot(train['dropoff_longitude'].values, color="g",bins =100, ax=axes[1,1])
+axes[0, 0].set_title('pickup_latitude')
+axes[0, 1].set_title('pickup_longitude')
+axes[1, 0].set_title('dropoff_latitude')
+axes[1, 1].set_title('dropoff_longitude')
+plt.setp(axes, yticks=[])
+plt.tight_layout()
+plt.savefig('./fig/6_Lat_Lon_Plot.png',dpi=100)
+
+def ViolinPlot(train, y_, row_, hue_):
+sns.set(style="darkgrid")
+sns.violinplot(x=row_, 
+y=y_, 
+hue=hue_, data=train, split=True,
+inner="quart")
+
+def PivotPlot(train, y_, row_, col_):   #pickup_hour_and_pickup_weekday_Pivot 
+sns.set(style="darkgrid")
+pivot_table=pd.pivot_table(train, index=row_, columns=col_, values=y_, aggfunc=np.mean)
+sns.heatmap(pivot_table)
+plt.tight_layout()
+plt.savefig('./fig/'+ row_ + '_and_' + col_ + '_Pivot.png',dpi=100)
+
+#Time_Distance_Plot   
+def Time_Distance_Plot(train): 
+sample_ind = np.random.permutation(len(train))[:5000]
+sns.lmplot(x='distance_haversine', y='log_trip_duration', data = train.iloc[sample_ind], scatter_kws={"s": 10})   
+plt.savefig('./fig/8_Time_Distance_Pivot.png',dpi=100)
+
+def Two_Hist_Plot(train, test):
+sns.set_style("darkgrid")
+sns.kdeplot(train['log_trip_duration'], shade=True, label = 'Train', color = 'b')
+sns.kdeplot(test['log_trip_duration'], shade=True, label = 'Test', color = 'r')
+plt.legend()
+plt.xlabel('Log(Duration)')
+plt.ylabel('Frequency')
+plt.tight_layout()
+plt.savefig('./fig/9_Two_His_Plot.png',dpi=100)            
+\end{lstlisting}
+\begin{thebibliography}{1}
+   
+    \bibitem[1]\href Traffic condition recognition using the k-means clustering method
+    M. Montazeri-Gh, A. Fotouhi ∗
+    Systems Simulation and Control Laboratory, School of Mechanical Engineering, Iran University of Science and Technology, Tehran,
+    P.O. Box 16846-13114, Iran
+    Received 24 November 2010; revised 14 March 2011; accepted 7 June 2011 
+	   
+   
+    \bibitem[2]\href{url} {https://www.researchgate.net/publication/221019408}
+   
+    \bibitem[3]\href {url} {http://stackoverflow.com/}   
+    
+    \bibitem[4] \href{url}  {https://github.com/shiwang0211/NYC-Taxi}
+   
+   
+\end{thebibliography}
+\end{document} \label{key}
